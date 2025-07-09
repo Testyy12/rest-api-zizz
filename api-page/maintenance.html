@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Maintenance - Zizz API</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+            },
+            accent: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+            'gradient': 'gradient 8s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' }
+            },
+            'pulse-glow': {
+              '0%, 100%': { 'box-shadow': '0 0 20px rgba(139, 92, 246, 0.3)' },
+              '50%': { 'box-shadow': '0 0 30px rgba(139, 92, 246, 0.6)' }
+            },
+            gradient: {
+              '0%, 100%': {
+                'background-size': '200% 200%',
+                'background-position': 'left center'
+              },
+              '50%': {
+                'background-size': '200% 200%',
+                'background-position': 'right center'
+              }
+            }
+          }
+        }
+      },
+      darkMode: 'class',
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 font-sans">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full text-center space-y-8 animate-fade-in">
+      <!-- Animated Icon -->
+      <div class="relative">
+        <div class="w-32 h-32 mx-auto bg-gradient-to-br from-primary-500 to-accent-500 rounded-3xl flex items-center justify-center animate-float shadow-2xl">
+          <img
+            alt="Maintenance animation"
+            class="w-20 h-20 object-contain"
+            id="maintenanceGif"
+            src="https://raw.githubusercontent.com/raolbyte/xyz/refs/heads/main/public/maintenance.gif"
+            decoding="async"
+            loading="lazy"
+            onerror="this.style.display='none'; document.getElementById('fallbackIcon').style.display='flex';"
+          />
+          <div id="fallbackIcon" class="hidden w-20 h-20 items-center justify-center">
+            <i class="fas fa-tools text-4xl text-white"></i>
+          </div>
+        </div>
+        <div class="absolute -top-2 -right-2 w-8 h-8 bg-accent-500 rounded-full animate-pulse"></div>
+        <div class="absolute -bottom-2 -left-2 w-6 h-6 bg-primary-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+      </div>
+      
+      <!-- Content -->
+      <div class="space-y-4">
+        <h1 class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+          Website Under Maintenance
+        </h1>
+        
+        <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+          We're currently upgrading our systems to serve you better.
+          <br />
+          Please check back in a few hours.
+        </p>
+      </div>
+      
+      <!-- Action Button -->
+      <button
+        class="w-full px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 flex items-center justify-center gap-3"
+        type="button"
+        onclick="location.reload()"
+        aria-label="Retry loading the website"
+      >
+        <i class="fas fa-sync-alt"></i>
+        <span>Retry</span>
+      </button>
+      
+      <!-- Time Info -->
+      <div class="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <i class="fas fa-clock"></i>
+        <span>Last updated: <span id="currentTime"></span></span>
+      </div>
+      
+      <!-- Brand -->
+      <div class="pt-8 border-t border-gray-200 dark:border-gray-700">
+        <p class="text-gray-500 dark:text-gray-400 text-sm">
+          © 2025 <span class="font-semibold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">Zizz API</span> Corp. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      document.getElementById('currentTime').textContent = timeString;
+    }
+    
+    async function loadMaintenanceSettings() {
+      try {
+        const response = await fetch('/api/settings');
+        const settings = await response.json();
+        
+        if (settings.maintenance && settings.maintenance.gifUrl) {
+          document.getElementById('maintenanceGif').src = settings.maintenance.gifUrl;
+        }
+      } catch (error) {
+        console.log('Could not load maintenance settings, using default GIF');
+      }
+    }
+    
+    // Dark mode detection
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+    
+    updateTime();
+    loadMaintenanceSettings();
+    
+    setInterval(updateTime, 60000);
+    
+    setTimeout(() => {
+      location.reload();
+    }, 30000);
+    
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        updateTime();
+      }
+    });
+  </script>
+</body>
+</html>

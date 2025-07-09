@@ -1,0 +1,134 @@
+{
+  "name": "Rest API'S",
+  "version": "v1.0.0",
+  "description": "Simple and easy to use API.",
+  "baseURL": "https://zizz-api.vercel.app",
+  "maintenance": {
+    "enabled": false,
+    "gifUrl": "https://raw.githubusercontent.com/raolbyte/xyz/refs/heads/main/public/maintenance.gif"
+  },
+  "bannerImage": "/src/banner.jpg",
+  "previewImage": "/src/preview.png",
+  "header": {
+    "status": "Active!"
+  },
+  "apiSettings": {
+    "creator": "Zizz-Shop",
+    "apikey": ["zizz-peler"]
+  },
+  "categories": [
+    {
+      "name": "Artificial Intelligence",
+      "items": [
+        {
+          "name": "LuminAI",
+          "desc": "Talk with luminai - Advanced AI assistant",
+          "path": "/ai/luminai?text=",
+          "status": "ready",
+          "params": {
+            "text": "Text for luminai to respond to"
+          },
+          "examples": {
+            "javascript": "const response = await fetch('{{baseURL}}/ai/luminai?text=Hello');\nconst data = await response.json();\nconsole.log(data);",
+            "python": "import requests\n\nresponse = requests.get('{{baseURL}}/ai/luminai?text=Hello')\ndata = response.json()\nprint(data)",
+            "curl": "curl -X GET '{{baseURL}}/ai/luminai?text=Hello'",
+            "php": "<?php\n$response = file_get_contents('{{baseURL}}/ai/luminai?text=Hello');\n$data = json_decode($response, true);\nprint_r($data);\n?>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Downloader",
+      "items": [
+        {
+          "name": "AIODL",
+          "desc": "Downloader for TikTok, Instagram, YouTube, Twitter, Facebook, and more",
+          "path": "/downloader/aio?url=",
+          "status": "ready",
+          "params": {
+            "url": "Url must be required"
+          },
+          "examples": {
+            "javascript": "const response = await fetch('{{baseURL}}/downloader/aio?url=https://tiktok.com/video');\nconst data = await response.json();\nconsole.log(data);",
+            "python": "import requests\n\nresponse = requests.get('{{baseURL}}/downloader/aio?url=https://tiktok.com/video')\ndata = response.json()\nprint(data)",
+            "curl": "curl -X GET '{{baseURL}}/downloader/aio?url=https://tiktok.com/video'",
+            "php": "<?php\n$url = urlencode('https://tiktok.com/video');\n$response = file_get_contents('{{baseURL}}/downloader/aio?url=' . $url);\n$data = json_decode($response, true);\nprint_r($data);\n?>"
+          }
+        },
+        {
+          "name": "Pinterest dl",
+          "desc": "Downloader for Pinterest",
+          "path": "/downloader/pindl?url=",
+          "status": "ready",
+          "params": {
+            "url": "Url must be required"
+          },
+          "examples": {
+            "javascript": "const response = await fetch('{{baseURL}}/downloader/pinterest?url=https://');\nconst data = await response.json();\nconsole.log(data);",
+            "python": "import requests\n\nresponse = requests.get('{{baseURL}}/downloader/pinterest?url=https://tiktok.com/video')\ndata = response.json()\nprint(data)",
+            "curl": "curl -X GET '{{baseURL}}/downloader/pinterest?url=https://tiktok.com/video'",
+            "php": "<?php\n$url = urlencode('https://tiktok.com/video');\n$response = file_get_contents('{{baseURL}}/downloader/aio?url=' . $url);\n$data = json_decode($response, true);\nprint_r($data);\n?>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "items": [
+        {
+          "name": "pinterest",
+          "desc": "Search Image from pinterest",
+          "path": "/search/pin?text=&count=",
+          "status": "ready",
+          "params": {
+            "text": "text must be required",
+            "count": "must be number. max 10"
+          },
+          "examples": {
+            "javascript": "const response = await fetch('{{baseURL}}/search/pin?text=anomali&count=2');\nconst data = await response.json();\nconsole.log(data);",
+            "python": "import requests\n\nresponse = requests.get('{{baseURL}}/search/pin?text=zizzshop&count=2')\ndata = response.json()\nprint(data)",
+            "curl": "curl -X GET '{{baseURL}}/search/pin?text=anomali&count=2'",
+            "php": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Maker",
+      "items": [
+        {
+          "name": "brat",
+          "desc": "Brat generator",
+          "path": "/maker/brat-image?text=",
+          "status": "ready",
+          "params": {
+            "text": "text must be required"
+          },
+          "examples": {
+            "javascript": "const response = await fetch('{{baseURL}}/maker/brat-image?text=anomali');\nconst data = await response.json();\nconsole.log(data);",
+            "python": "import requests\n\nresponse = requests.get('{{baseURL}}/maker/brat-image?text=zizzshop')\ndata = response.json()\nprint(data)",
+            "curl": "curl -X GET '{{baseURL}}/maker/brat-image?text=anomali'",
+            "php": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Random",
+      "items": [
+        {
+          "name": "Blue Archive",
+          "desc": "Get random Blue Archive character images",
+          "path": "/random/ba",
+          "status": "ready",
+          "examples": {
+            "javascript": "const response = await fetch('{{baseURL}}/random/ba');\nconst blob = await response.blob();\nconst imageUrl = URL.createObjectURL(blob);",
+            "python": "import requests\n\nresponse = requests.get('{{baseURL}}/random/ba')\nwith open('blue_archive.png', 'wb') as f:\n    f.write(response.content)",
+            "curl": "curl -X GET '{{baseURL}}/random/ba' --output blue_archive.png",
+            "php": "<?php\n$imageData = file_get_contents('{{baseURL}}/random/ba');\nfile_put_contents('blue_archive.png', $imageData);\n?>"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Modern API documentation and interactive testing interface. Explore our powerful APIs with ease.">
+    <meta name="keywords" content="API, API Documentation, REST API, Zizz API, Zizz, Developer Tools">
+    <meta name="author" content="Zizz">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rest-api-zizz.vercel.app/">
+    <meta property="og:title" content="Zizz API - Modern API Documentation">
+    <meta property="og:description" content="Explore our various API endpoints with a modern and easy-to-use interface. Free APIs for developers including AI, random images, and more.">
+    <meta property="og:image" content="https://rest-api-zizz.vercel.app/api/preview-image">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:site_name" content="Zizz API">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://rest-api-zizz.vercel.app/">
+    <meta name="twitter:title" content="Zizz API - Modern API Documentation">
+    <meta name="twitter:description" content="Explore our various API endpoints with a modern and easy-to-use interface. Free APIs for developers including AI, random images, and more.">
+    <meta name="twitter:image" content="https://rest-api-zizz.vercel.app/api/preview-image">
+    <meta name="twitter:image:alt" content="Zizz API - Modern API Documentation Interface">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="msapplication-TileColor" content="#0ea5e9">
+    <meta name="msapplication-TileImage" content="https://files.catbox.moe/435ni4.jpg">
+    
+    <!-- WhatsApp specific -->
+    <meta property="og:image:secure_url" content="https://rest-api-zizz.vercel.app/api/preview-image">
+    
+    <link rel="icon" href="https://files.catbox.moe/435ni4.jpg" type="image/jpg">
+    <link rel="apple-touch-icon" href="https://files.catbox.moe/435ni4.jpg">
+    <link rel="shortcut icon" href="https://files.catbox.moe/435ni4.jpg">
+    
+    <title id="page">Zizz API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            50: '#ecfeff',
+                            100: '#cffafe',
+                            200: '#a5f3fc',
+                            300: '#67e8f9',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                            800: '#155e75',
+                            900: '#164e63',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'slide-up': 'slide-up 0.6s ease-out',
+                        'slide-down': 'slide-down 0.6s ease-out',
+                        'slide-left': 'slide-left 0.6s ease-out',
+                        'slide-right': 'slide-right 0.6s ease-out',
+                        'fade-in': 'fade-in 0.8s ease-out',
+                        'scale-in': 'scale-in 0.5s ease-out',
+                        'bounce-in': 'bounce-in 0.8s ease-out',
+                        'rotate-in': 'rotate-in 0.6s ease-out',
+                        'flip-in': 'flip-in 0.8s ease-out',
+                        'wave': 'wave 2s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'page-enter': 'page-enter 0.8s ease-out',
+                        'stagger-1': 'slide-up 0.6s ease-out 0.1s both',
+                        'stagger-2': 'slide-up 0.6s ease-out 0.2s both',
+                        'stagger-3': 'slide-up 0.6s ease-out 0.3s both',
+                        'stagger-4': 'slide-up 0.6s ease-out 0.4s both',
+                        'stagger-5': 'slide-up 0.6s ease-out 0.5s both',
+                        'morph': 'morph 3s ease-in-out infinite',
+                        'neon-pulse': 'neon-pulse 2s ease-in-out infinite alternate',
+                        'category-float': 'category-float 8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { 'box-shadow': '0 0 20px rgba(14, 165, 233, 0.4)' },
+                            '50%': { 'box-shadow': '0 0 40px rgba(14, 165, 233, 0.8)' }
+                        },
+                        'slide-up': {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        'slide-down': {
+                            '0%': { transform: 'translateY(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        'slide-left': {
+                            '0%': { transform: 'translateX(30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        'slide-right': {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        'scale-in': {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        'bounce-in': {
+                            '0%': { transform: 'scale(0.3)', opacity: '0' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        'rotate-in': {
+                            '0%': { transform: 'rotate(-180deg) scale(0.5)', opacity: '0' },
+                            '100%': { transform: 'rotate(0deg) scale(1)', opacity: '1' }
+                        },
+                        'flip-in': {
+                            '0%': { transform: 'rotateY(-90deg)', opacity: '0' },
+                            '100%': { transform: 'rotateY(0deg)', opacity: '1' }
+                        },
+                        'wave': {
+                            '0%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(20deg)' },
+                            '75%': { transform: 'rotate(-15deg)' }
+                        },
+                        'shimmer': {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        },
+                        'glow': {
+                            '0%': { 'box-shadow': '0 0 5px rgba(6, 182, 212, 0.5)' },
+                            '100%': { 'box-shadow': '0 0 20px rgba(6, 182, 212, 0.8), 0 0 30px rgba(6, 182, 212, 0.4)' }
+                        },
+                        'page-enter': {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        'morph': {
+                            '0%, 100%': { 'border-radius': '60% 40% 30% 70% / 60% 30% 70% 40%' },
+                            '50%': { 'border-radius': '30% 60% 70% 40% / 50% 60% 30% 60%' }
+                        },
+                        'neon-pulse': {
+                            '0%': { 
+                                'box-shadow': '0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor',
+                                'text-shadow': '0 0 5px currentColor'
+                            },
+                            '100%': { 
+                                'box-shadow': '0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor',
+                                'text-shadow': '0 0 10px currentColor'
+                            }
+                        },
+                        'category-float': {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '33%': { transform: 'translateY(-10px) rotate(1deg)' },
+                            '66%': { transform: 'translateY(5px) rotate(-1deg)' }
+                        }
+                    }
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Zizz API",
+      "description": "Modern API documentation and interactive testing interface",
+      "url": "https://rest-api-zizz.vercel.app/",
+      "author": {
+        "@type": "Organization",
+        "name": "Zizz Team"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://rest-api-zizz.vercel.app/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #0ea5e9, #06b6d4);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #0284c7, #0891b2);
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        /* Page Transition */
+        .page-transition {
+            animation: page-enter 0.8s ease-out;
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Enhanced Card Hover Effects */
+        .api-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .api-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+            pointer-events: none;
+        }
+        
+        .api-card:hover::before {
+            left: 100%;
+        }
+        
+        .api-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(14, 165, 233, 0.15);
+        }
+
+        /* Category Header Enhancements */
+        .category-header {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(14, 165, 233, 0.1) 0%, 
+                rgba(6, 182, 212, 0.1) 50%, 
+                rgba(34, 211, 238, 0.1) 100%);
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .category-icon-container {
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4, #22d3ee);
+            background-size: 300% 300%;
+            animation: gradient 8s ease infinite;
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .particle-1 { animation-delay: 0s; }
+        .particle-2 { animation-delay: 1s; }
+        .particle-3 { animation-delay: 2s; }
+        .particle-4 { animation-delay: 3s; }
+        .particle-5 { animation-delay: 4s; }
+        
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .ripple:active::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: gradient 8s ease infinite;
+        }
+        
+        /* Loading Animation */
+        .loading-dots::after {
+            content: '';
+            animation: loading-dots 1.5s infinite;
+        }
+        
+        @keyframes loading-dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+        
+        /* Stagger Animation Classes */
+        .stagger-item:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-item:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-item:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-item:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-item:nth-child(5) { animation-delay: 0.5s; }
+        .stagger-item:nth-child(6) { animation-delay: 0.6s; }
+        .stagger-item:nth-child(7) { animation-delay: 0.7s; }
+        .stagger-item:nth-child(8) { animation-delay: 0.8s; }
+        .stagger-item:nth-child(9) { animation-delay: 0.9s; }
+        
+        /* Scroll Reveal - Less aggressive */
+        .scroll-reveal {
+            opacity: 0.3;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ensure API content is always visible */
+        #apiContent {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .api-item {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* API Items Animation */
+        .api-item {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced Category Styling */
+        .category-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(255, 255, 255, 0.7) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .category-card {
+            background: linear-gradient(135deg, 
+                rgba(30, 41, 59, 0.9) 0%, 
+                rgba(51, 65, 85, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Neon Effects */
+        .neon-border {
+            position: relative;
+        }
+
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(45deg, #0ea5e9, #06b6d4, #22d3ee, #0ea5e9);
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            animation: gradient 3s linear infinite;
+        }
+
+        /* Dark Mode Text Improvements */
+        .dark .text-gray-900 {
+            color: #f1f5f9 !important;
+        }
+
+        .dark .text-gray-800 {
+            color: #e2e8f0 !important;
+        }
+
+        .dark .text-gray-700 {
+            color: #cbd5e1 !important;
+        }
+
+        .dark .text-gray-600 {
+            color: #94a3b8 !important;
+        }
+
+        .dark .text-gray-500 {
+            color: #64748b !important;
+        }
+
+        /* Category specific colors */
+        .category-ai {
+            --category-color: #8b5cf6;
+            --category-color-light: #a78bfa;
+            --category-bg: rgba(139, 92, 246, 0.1);
+        }
+
+        .category-downloader {
+            --category-color: #10b981;
+            --category-color-light: #34d399;
+            --category-bg: rgba(16, 185, 129, 0.1);
+        }
+
+        .category-random {
+            --category-color: #f59e0b;
+            --category-color-light: #fbbf24;
+            --category-bg: rgba(245, 158, 11, 0.1);
+        }
+
+        .category-tools {
+            --category-color: #ef4444;
+            --category-color-light: #f87171;
+            --category-bg: rgba(239, 68, 68, 0.1);
+        }
+
+        .category-social {
+            --category-color: #3b82f6;
+            --category-color-light: #60a5fa;
+            --category-bg: rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 font-sans transition-all duration-500 page-transition">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500 z-50 flex items-center justify-center">
+        <div class="text-center animate-bounce-in">
+            <div class="relative">
+                <div class="w-20 h-20 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-6"></div>
+                <div class="absolute inset-0 w-20 h-20 border-4 border-transparent border-t-accent-300 rounded-full animate-spin mx-auto" style="animation-delay: -0.5s; animation-direction: reverse;"></div>
+            </div>
+            <p class="text-white text-xl font-semibold">Loading<span class="loading-dots"></span></p>
+        </div>
+        <div class="absolute bottom-8 text-white/70 text-sm animate-fade-in" style="animation-delay: 1s;">
+            © 2025 Zizz API Corp. All rights reserved.
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sideNavigation" class="fixed left-0 top-0 h-full w-64 bg-white/90 dark:bg-dark-900/90 backdrop-blur-xl border-r border-gray-200/50 dark:border-dark-700/50 z-40 transform -translate-x-full lg:translate-x-0 transition-all duration-500 ease-out">
+        <div class="p-6 border-b border-gray-200/50 dark:border-dark-700/50">
+            <div class="flex items-center gap-3 animate-slide-right">
+                <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center animate-glow">
+                    <i class="fas fa-code text-white text-lg animate-wave"></i>
+                </div>
+                <div>
+                    <span id="sideNavName" class="text-xl font-bold gradient-text">Zizz API</span>
+                    <div id="versionHeader" class="inline-block ml-2 px-2 py-1 bg-gradient-to-r from-accent-500 to-primary-500 text-white text-xs rounded-full font-medium animate-pulse-glow">Active</div>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="p-4 space-y-2">
+            <a href="#Home" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 group active stagger-item animate-slide-right">
+                <i class="fas fa-home text-lg group-hover:scale-110 group-hover:animate-bounce transition-transform"></i>
+                <span class="font-medium">Home</span>
+            </a>
+            <a href="#APIs" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 group stagger-item animate-slide-right">
+                <i class="fas fa-plug text-lg group-hover:scale-110 group-hover:animate-bounce transition-transform"></i>
+                <span class="font-medium">APIs</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="lg:ml-64 min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="sticky top-0 bg-white/80 dark:bg-dark-900/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-dark-700/50 z-30 animate-slide-down">
+            <div class="flex items-center justify-between px-4 lg:px-6 py-4">
+                <button class="lg:hidden p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors ripple" id="menuToggle" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars text-xl text-gray-700 dark:text-gray-300"></i>
+                </button>
+                
+                <div class="flex-1 max-w-md mx-4">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-primary-400"></i>
+                        </div>
+                        <input type="text" id="searchInput" class="w-full pl-10 pr-10 py-3 bg-gray-50 dark:bg-dark-800 border border-gray-200 dark:border-dark-700 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400 hover:shadow-lg text-gray-900 dark:text-gray-100" placeholder="Search APIs...">
+                        <button id="clearSearch" class="absolute inset-y-0 right-0 pr-3 flex items-center opacity-0 pointer-events-none transition-opacity">
+                            <i class="fas fa-times text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <button id="notificationBell" class="relative p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors ripple" aria-label="Notifications">
+                        <i class="far fa-bell text-xl text-gray-700 dark:text-gray-300"></i>
+                        <span id="notificationBadge" class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full hidden animate-pulse"></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="flex-1">
+            <!-- Hero Section -->
+            <section id="Home" class="relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-accent-500/5 to-cyan-500/10"></div>
+                
+                <!-- Animated Background Particles -->
+                <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div class="particle particle-1 absolute top-1/4 left-1/4 w-2 h-2 bg-primary-400 opacity-60"></div>
+                    <div class="particle particle-2 absolute top-1/3 right-1/4 w-3 h-3 bg-accent-400 opacity-40"></div>
+                    <div class="particle particle-3 absolute bottom-1/3 left-1/3 w-1 h-1 bg-cyan-400 opacity-50"></div>
+                    <div class="particle particle-4 absolute top-1/2 right-1/3 w-2 h-2 bg-blue-400 opacity-30"></div>
+                    <div class="particle particle-5 absolute bottom-1/4 right-1/4 w-1 h-1 bg-sky-400 opacity-70"></div>
+                </div>
+                
+                <div class="relative px-4 lg:px-6 py-16 lg:py-24">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center">
+                            <div class="space-y-8 scroll-reveal">
+                                <div class="flex items-center gap-4 flex-wrap animate-slide-right">
+                                    <h1 id="name" class="text-4xl lg:text-6xl font-black gradient-text">Zizz API</h1>
+                                    <div id="version" class="px-4 py-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-full text-sm font-semibold shadow-lg animate-pulse-glow">v1.0</div>
+                                </div>
+                                
+                                <p id="description" class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed animate-slide-up">A simple and easily customizable API documentation interface with modern design and powerful features.</p>
+                                
+                                <div class="flex flex-wrap gap-4 animate-slide-up" style="animation-delay: 0.2s;">
+                                    <button class="px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2 group ripple">
+                                        <i class="fas fa-rocket group-hover:animate-bounce"></i>
+                                        Get Started
+                                    </button>
+                                    <a href="/documentation" class="px-8 py-4 border-2 border-primary-500 text-primary-600 dark:text-primary-400 rounded-xl font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300 flex items-center gap-2 group ripple">
+                                        <i class="fas fa-book group-hover:animate-pulse"></i>
+                                        Documentation
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="relative scroll-reveal animate-float">
+                                <div class="relative z-10">
+                                    <img id="dynamicImage" src="/src/banner.jpg" alt="Zizz API Banner" class="w-full h-auto rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500 hover:scale-105">
+                                </div>
+                                <div class="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full opacity-20 animate-pulse"></div>
+                                <div class="absolute -bottom-4 -left-4 w-48 h-48 bg-gradient-to-br from-accent-400 to-cyan-400 rounded-full opacity-20 animate-pulse" style="animation-delay: 1s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- APIs Section -->
+            <section id="APIs" class="px-4 lg:px-6 py-16">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16 scroll-reveal">
+                        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4 gradient-text">Available APIs</h2>
+                        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Explore our collection of powerful and easy-to-use APIs designed to accelerate your development process.</p>
+                    </div>
+                    
+                    <div id="apiContent" class="space-y-16">
+                        <!-- API categories will be populated here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-white/80 dark:bg-dark-900/80 backdrop-blur-xl border-t border-gray-200/50 dark:border-dark-700/50 scroll-reveal">
+            <div class="px-4 lg:px-6 py-8">
+                <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
+                    <div id="wm" class="text-gray-600 dark:text-gray-400">© 2025 Zizz API Corp. All rights reserved.</div>
+                    
+                    <div class="flex items-center gap-4">
+                        <span class="text-gray-600 dark:text-gray-400">Light</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="themeToggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gradient-to-r peer-checked:from-primary-500 peer-checked:to-accent-500"></div>
+                        </label>
+                        <span class="text-gray-600 dark:text-gray-400">Dark</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <a href="https://whatsapp.com/channel/0029VbAgdqrElagwZRgYgX3g" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                            Info
+                        </a>
+                        <a href="https://wa.me/6285705390430 " target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <i class="fas fa-envelope"></i>
+                            Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- API Response Modal -->
+    <div id="apiResponseModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-900 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden animate-scale-in">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-dark-700">
+                <div>
+                    <h3 id="apiResponseModalLabel" class="text-2xl font-bold text-gray-900 dark:text-white">API Name</h3>
+                    <p id="apiResponseModalDesc" class="text-gray-600 dark:text-gray-400 mt-1">API Description</p>
+                </div>
+                <button id="modalCloseBtn" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors ripple" aria-label="Close modal">
+                    <i class="fas fa-times text-xl text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 max-h-[60vh] overflow-y-auto">
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Endpoint</label>
+                            <button id="copyEndpoint" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors ripple" title="Copy endpoint">
+                                <i class="far fa-copy text-gray-500"></i>
+                            </button>
+                        </div>
+                        <pre id="apiEndpoint" class="bg-gray-50 dark:bg-dark-800 p-4 rounded-xl text-sm font-mono overflow-x-auto border border-gray-200 dark:border-dark-700 text-gray-900 dark:text-gray-100"></pre>
+                    </div>
+                    
+                    <div id="apiQueryInputContainer"></div>
+                    
+                    <div id="apiResponseLoading" class="hidden flex flex-col items-center justify-center py-12">
+                        <div class="w-12 h-12 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin mb-4"></div>
+                        <p class="text-gray-600 dark:text-gray-400">Processing request...</p>
+                    </div>
+                    
+                    <div id="responseContainer" class="hidden">
+                        <div class="flex items-center justify-between mb-3">
+                            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Response</label>
+                            <button id="copyResponse" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors ripple" title="Copy response">
+                                <i class="far fa-copy text-gray-500"></i>
+                            </button>
+                        </div>
+                        <pre id="apiResponseContent" class="bg-gray-50 dark:bg-dark-800 p-4 rounded-xl text-sm font-mono overflow-x-auto border border-gray-200 dark:border-dark-700 max-h-96 text-gray-900 dark:text-gray-100"></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-dark-700">
+                <button id="submitQueryBtn" class="px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ripple" disabled>
+                    <span>Submit</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="notificationToast" class="fixed bottom-6 right-6 bg-white dark:bg-dark-900 rounded-xl shadow-2xl border border-gray-200 dark:border-dark-700 p-4 transform translate-x-full transition-transform duration-300 z-50 max-w-sm">
+        <div class="flex items-start gap-3">
+            <i class="toast-icon fas fa-info-circle text-primary-500 mt-1"></i>
+            <div class="flex-1">
+                <div class="toast-title font-semibold text-gray-900 dark:text-white">Notification</div>
+                <div class="toast-body text-gray-600 dark:text-gray-400 text-sm mt-1">This is a notification message.</div>
+            </div>
+            <button class="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors" data-bs-dismiss="toast">
+                <i class="fas fa-times text-gray-400"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/assets/script.js"></script>
+</body>
+</html>

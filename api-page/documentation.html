@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="API Documentation - Complete guide for using our REST API endpoints">
+    <meta name="keywords" content="API Documentation, REST API, Developer Guide, Code Examples">
+    <meta name="author" content="Zizz">
+    
+    <link rel="icon" href="/src/icon.png" type="image/png">
+    <title>API Documentation - Zizz API</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            50: '#ecfeff',
+                            100: '#cffafe',
+                            200: '#a5f3fc',
+                            300: '#67e8f9',
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                            800: '#155e75',
+                            900: '#164e63',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'slide-down': 'slideDown 0.6s ease-out',
+                        'slide-left': 'slideLeft 0.6s ease-out',
+                        'slide-right': 'slideRight 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+                        'page-enter': 'pageEnter 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideLeft: {
+                            '0%': { transform: 'translateX(20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        slideRight: {
+                            '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.8' }
+                        },
+                        pageEnter: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #0ea5e9, #06b6d4);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #0284c7, #0891b2);
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Page Transition */
+        .page-transition {
+            animation: pageEnter 0.8s ease-out;
+        }
+
+        /* Card Hover Effects */
+        .doc-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .doc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .dark .doc-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Code Block Enhancement */
+        .code-enhanced {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .code-enhanced::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #0ea5e9, transparent);
+        }
+
+        /* Enhanced Focus States */
+        .focus-ring:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        /* Button Ripple Effect */
+        .btn-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-ripple:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Dark Mode Text Improvements */
+        .dark .text-gray-900 {
+            color: #f1f5f9 !important;
+        }
+
+        .dark .text-gray-800 {
+            color: #e2e8f0 !important;
+        }
+
+        .dark .text-gray-700 {
+            color: #cbd5e1 !important;
+        }
+
+        .dark .text-gray-600 {
+            color: #94a3b8 !important;
+        }
+
+        .dark .text-gray-500 {
+            color: #64748b !important;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 font-sans transition-all duration-500 page-transition">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white/80 dark:bg-dark-900/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-dark-700/50 z-30 transition-all duration-300 animate-slide-down">
+        <div class="max-w-7xl mx-auto px-4 lg:px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <a href="/" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i class="fas fa-code text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <span id="apiName" class="text-xl font-bold gradient-text">Zizz API</span>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Documentation</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <a href="/" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-200 flex items-center gap-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 btn-ripple focus-ring">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <button id="themeToggle" class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-dark-800 transition-colors btn-ripple focus-ring">
+                        <i class="fas fa-moon text-xl text-gray-700 dark:text-gray-300 dark:hidden"></i>
+                        <i class="fas fa-sun text-xl text-gray-300 hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-6 py-8">
+        <!-- Hero Section -->
+        <section id="hero" class="text-center mb-20 animate-fade-in">
+            <div class="relative">
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-accent-100 dark:from-primary-900/30 dark:to-accent-900/30 px-4 py-2 rounded-full text-sm font-medium text-primary-700 dark:text-primary-300 mb-6 animate-scale-in">
+                        <i class="fas fa-sparkles"></i>
+                        <span>Complete API Documentation</span>
+                    </div>
+                    
+                    <h1 class="text-4xl lg:text-6xl font-black gradient-text mb-6 animate-slide-up">
+                        API Documentation
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed animate-slide-up" style="animation-delay: 0.2s;">
+                        Complete guide and code examples for integrating with our REST API endpoints. 
+                        Build amazing applications with our powerful and easy-to-use APIs.
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 animate-slide-up" style="animation-delay: 0.4s;">
+                        <a href="#quickstart" class="px-8 py-4 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 flex items-center gap-2 btn-ripple focus-ring">
+                            <i class="fas fa-rocket"></i>
+                            Quick Start
+                        </a>
+                        <a href="#endpoints" class="px-8 py-4 border-2 border-primary-500 text-primary-600 dark:text-primary-400 rounded-xl font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200 flex items-center gap-2 btn-ripple focus-ring">
+                            <i class="fas fa-list"></i>
+                            View Endpoints
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start Section -->
+        <section id="quickstart" class="mb-20 animate-slide-up">
+            <div class="doc-card bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-200/50 dark:border-dark-700/50">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Quick Start</h2>
+                        <p class="text-gray-600 dark:text-gray-400">Get up and running in minutes</p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-link text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Base URL</h3>
+                        </div>
+                        <div class="code-enhanced p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-gray-400 uppercase tracking-wide">Endpoint</span>
+                                <button onclick="copyToClipboard(document.getElementById('baseURL').textContent)" class="p-1 rounded hover:bg-gray-700 transition-colors btn-ripple focus-ring">
+                                    <i class="fas fa-copy text-gray-400 hover:text-white"></i>
+                                </button>
+                            </div>
+                            <code id="baseURL" class="text-primary-400 font-mono text-lg">https://api.zizz.dev</code>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-code text-accent-600 dark:text-accent-400"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Response Format</h3>
+                        </div>
+                        <div class="code-enhanced p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-gray-400 uppercase tracking-wide">Format</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">Standard</span>
+                                </div>
+                            </div>
+                            <code class="text-accent-400 font-mono text-lg">JSON</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Authentication Info -->
+                <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-2xl border border-blue-200/50 dark:border-blue-700/50">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-info-circle text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">Authentication</h4>
+                            <p class="text-blue-800 dark:text-blue-200 text-sm leading-relaxed">
+                                Most of our APIs are free to use and don't require authentication. 
+                                For rate-limited endpoints, we'll provide API keys in the future.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Endpoints Section -->
+        <section id="endpoints" class="space-y-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4 gradient-text">API Endpoints</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Explore our comprehensive collection of API endpoints with detailed examples and interactive testing.
+                </p>
+            </div>
+            
+            <div id="apiEndpoints" class="space-y-8">
+                <!-- Endpoints will be populated here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-white dark:bg-dark-900 rounded-xl shadow-2xl border border-gray-200 dark:border-dark-700 p-4 transform translate-x-full transition-all duration-300 z-50 max-w-sm">
+        <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                <i class="fas fa-check text-green-600 dark:text-green-400"></i>
+            </div>
+            <div class="flex-1">
+                <div class="font-semibold text-gray-900 dark:text-white">Success!</div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm mt-1">Copied to clipboard</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkMode');
+
+        if (savedTheme === 'true' || (savedTheme === null && prefersDark)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDarkMode = document.documentElement.classList.contains('dark');
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Add smooth transition effect
+            document.body.style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+                document.body.style.transition = '';
+            }, 300);
+        });
+
+        // Copy to Clipboard
+        async function copyToClipboard(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                showToast();
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast();
+            }
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-x-full');
+            toast.classList.add('translate-x-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+                toast.classList.remove('translate-x-0');
+            }, 3000);
+        }
+
+        // Smooth Scroll Animations
+        const observeElements = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-slide-up').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+        };
+
+        // Load API Documentation
+        async function loadDocumentation() {
+            try {
+                const response = await fetch('/api/settings');
+                const settings = await response.json();
+                
+                document.getElementById('apiName').textContent = settings.name || 'Zizz API';
+                document.getElementById('baseURL').textContent = settings.baseURL || window.location.origin;
+                
+                populateEndpoints(settings);
+            } catch (error) {
+                console.error('Error loading documentation:', error);
+                showErrorState();
+            }
+        }
+
+        function populateEndpoints(settings) {
+            const container = document.getElementById('apiEndpoints');
+            container.innerHTML = '';
+
+            if (!settings.categories || settings.categories.length === 0) {
+                showErrorState();
+                return;
+            }
+
+            settings.categories.forEach((category, categoryIndex) => {
+                const categorySection = document.createElement('div');
+                categorySection.className = 'doc-card animate-slide-up';
+                categorySection.style.animationDelay = `${categoryIndex * 0.1}s`;
+                
+                categorySection.innerHTML = `
+                    <div class="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-200/50 dark:border-dark-700/50">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-layer-group text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">${category.name}</h2>
+                                <p class="text-gray-600 dark:text-gray-400">${category.items.length} endpoints available</p>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            ${category.items.map((item, itemIndex) => createEndpointCard(item, settings.baseURL || window.location.origin, itemIndex)).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(categorySection);
+            });
+
+            // Initialize syntax highlighting
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        }
+
+        function createEndpointCard(item, baseURL, index) {
+            const fullURL = baseURL + item.path.split('?')[0];
+            const examples = item.examples || {};
+            const statusColors = {
+                ready: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+                error: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+                update: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+            };
+            
+            return `
+                <div class="border border-gray-200/50 dark:border-dark-700/50 rounded-2xl overflow-hidden transition-all duration-200 hover:shadow-lg animate-scale-in" style="animation-delay: ${index * 0.05}s;">
+                    <div class="bg-gradient-to-r from-gray-50 to-blue-50 dark:from-dark-800 dark:to-blue-900/20 p-6 border-b border-gray-200/50 dark:border-dark-700/50">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">${item.name}</h3>
+                                    <span class="px-3 py-1 ${statusColors[item.status] || statusColors.ready} rounded-full text-sm font-semibold">
+                                        <i class="fas fa-circle text-xs mr-1"></i>
+                                        ${item.status === 'ready' ? 'Ready' : item.status || 'Ready'}
+                                    </span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">${item.desc}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 bg-white/70 dark:bg-dark-800/70 rounded-xl p-4 backdrop-blur-sm">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 rounded-full text-sm font-semibold">GET</span>
+                            <code class="flex-1 text-gray-800 dark:text-gray-200 font-mono text-sm">${fullURL}</code>
+                            <button onclick="copyToClipboard('${fullURL}')" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors group btn-ripple focus-ring">
+                                <i class="fas fa-copy text-gray-500 group-hover:text-primary-500"></i>
+                            </button>
+                        </div>
+                        
+                        ${item.params ? createParametersSection(item.params) : ''}
+                    </div>
+                    
+                    <div class="p-6">
+                        <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                            <i class="fas fa-code text-primary-500"></i>
+                            Code Examples
+                        </h4>
+                        
+                        <div class="space-y-4">
+                            ${Object.entries(examples).map(([lang, code]) => createCodeExample(lang, code, baseURL)).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createParametersSection(params) {
+            return `
+                <div class="mt-6">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fas fa-sliders-h text-primary-500"></i>
+                        Parameters
+                    </h4>
+                    <div class="space-y-3">
+                        ${Object.entries(params).map(([key, desc]) => `
+                            <div class="flex items-center gap-4 bg-white/50 dark:bg-dark-800/50 rounded-lg p-4">
+                                <code class="px-3 py-1 bg-gray-200 dark:bg-dark-700 rounded-lg text-sm font-mono font-semibold">${key}</code>
+                                <span class="text-red-500 text-sm font-bold">*</span>
+                                <span class="text-gray-600 dark:text-gray-300 text-sm flex-1">${desc}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function createCodeExample(language, code, baseURL) {
+            const langIcons = {
+                javascript: 'fab fa-js-square text-yellow-500',
+                python: 'fab fa-python text-blue-500',
+                curl: 'fas fa-terminal text-green-500',
+                php: 'fab fa-php text-purple-500'
+            };
+            
+            const processedCode = code.replace(/\{\{baseURL\}\}/g, baseURL);
+            
+            return `
+                <div class="border border-gray-200/50 dark:border-dark-700/50 rounded-xl overflow-hidden">
+                    <div class="flex items-center justify-between bg-gray-100 dark:bg-dark-800 px-4 py-3 border-b border-gray-200/50 dark:border-dark-700/50">
+                        <div class="flex items-center gap-3">
+                            <i class="${langIcons[language] || 'fas fa-code'}"></i>
+                            <span class="font-semibold text-gray-700 dark:text-gray-300 capitalize">${language}</span>
+                        </div>
+                        <button onclick="copyToClipboard(\`${processedCode.replace(/`/g, '\\`')}\`)" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors group btn-ripple focus-ring">
+                            <i class="fas fa-copy text-gray-500 group-hover:text-primary-500"></i>
+                        </button>
+                    </div>
+                    <div class="code-enhanced">
+                        <pre class="p-4 text-gray-100 overflow-x-auto"><code class="language-${language}">${processedCode}</code></pre>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showErrorState() {
+            const container = document.getElementById('apiEndpoints');
+            container.innerHTML = `
+                <div class="text-center py-16 space-y-6">
+                    <div class="w-24 h-24 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto">
+                        <i class="fas fa-exclamation-triangle text-3xl text-red-500"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Unable to Load Documentation</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Please try refreshing the page or contact support.</p>
+                    </div>
+                    <button onclick="location.reload()" class="px-6 py-3 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 flex items-center gap-2 mx-auto btn-ripple focus-ring">
+                        <i class="fas fa-sync-alt"></i>
+                        Reload Page
+                    </button>
+                </div>
+            `;
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDocumentation();
+            observeElements();
+        });
+    </script>
+</body>
+</html>
