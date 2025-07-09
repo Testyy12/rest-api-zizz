@@ -7,8 +7,8 @@
     "enabled": false,
     "gifUrl": "https://raw.githubusercontent.com/raolbyte/xyz/refs/heads/main/public/maintenance.gif"
   },
-  "bannerImage": "/src/banner.jpg",
-  "previewImage": "/src/preview.png",
+  "bannerImage": "https://files.catbox.moe/435ni4.jpg",
+  "previewImage": "https://files.catbox.moe/435ni4.jpg",
   "header": {
     "status": "Active!"
   },
